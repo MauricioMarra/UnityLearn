@@ -10,12 +10,14 @@ public class Cube : MonoBehaviour
     public Color oldColor;
     
     Material material;
-    float changeColorSpeed = 3f;
+    float changeColorSpeed = 2f;
+
+    private float count;
 
     void Start()
     {
         transform.position = new Vector3(3, 4, 1);
-        transform.localScale = Vector3.one * 1.3f;
+        transform.localScale = Vector3.one * 2f;
 
         material = Renderer.material;
 
@@ -32,7 +34,7 @@ public class Cube : MonoBehaviour
     void ChangeColor()
     {
         oldColor = material.color;
-        newColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(.5f, 1f));
+        newColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         
         material.color = Color.Lerp(oldColor, newColor, changeColorSpeed);
     }
