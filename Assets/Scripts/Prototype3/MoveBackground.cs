@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveBackground : MonoBehaviour
 {
     public float speed;
+    public Prototype3.PlayerController playerController;
     
     private float originalX;
     private Vector2 backgroundSize;
@@ -19,7 +20,8 @@ public class MoveBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        if (!playerController.gameOver)
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
 
         if (transform.position.x <= originalX - backgroundSize.x/2)
             this.transform.position = new Vector3(originalX, 9.5f, 4f);
