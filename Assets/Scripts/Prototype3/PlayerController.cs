@@ -9,6 +9,11 @@ namespace Prototype3
         public float jumpForce;
         public float gravityModifier;
         public bool gameOver = false;
+        public ParticleSystem psExplosion;
+        public ParticleSystem psDirt;
+        public AudioClip jumpSound;
+        public AudioClip crashSound;
+        public AudioSource playerAudioSource;
 
         private Rigidbody playerRigidBody;
         private bool isOnGround = true;
@@ -37,6 +42,8 @@ namespace Prototype3
                 playerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 animator.SetTrigger(animatorJump_trig);
+                psDirt.Stop();
+                playerAudioSource.PlayOneShot(jumpSound);
             }
 
             if (gameOver)
@@ -54,9 +61,20 @@ namespace Prototype3
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag(groundTag))
+            {
                 isOnGround = true;
+                psDirt.Play();
+            }
             else if (collision.gameObject.CompareTag(obstacleTag))
+            {
                 gameOver = true;
+                if (psExplosion != null)
+                    psExplosion.Play();
+
+                psDirt.Stop();
+
+                playerAudioSource.PlayOneShot(crashSound);
+            }
         }
     }
 }
