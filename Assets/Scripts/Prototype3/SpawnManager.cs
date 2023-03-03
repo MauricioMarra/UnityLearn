@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject objectToSpawn;
+    public List<GameObject> objectToSpawn;
     public float spawnDelay;
     
     private Prototype3.PlayerController playerController;
@@ -27,7 +27,8 @@ public class SpawnManager : MonoBehaviour
 
     void CreateObstacle()
     {
+        var index = Random.Range(0, objectToSpawn.Count);
         if (!playerController.gameOver)
-            Instantiate(objectToSpawn, spawnPosition, objectToSpawn.transform.rotation);
+            Instantiate(objectToSpawn[index], spawnPosition, objectToSpawn[index].transform.rotation);
     }
 }

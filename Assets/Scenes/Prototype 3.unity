@@ -587,7 +587,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac43234f14e8974cba9806dd433525e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 7254771956358263730, guid: 18b94b6982c68ee4cb7ab0cf9b4b8391, type: 3}
+  objectToSpawn:
+  - {fileID: 7254771956358263730, guid: 18b94b6982c68ee4cb7ab0cf9b4b8391, type: 3}
+  - {fileID: 9150177725369867006, guid: a7e831d0e9f667243812b6c3f7c5820f, type: 3}
+  - {fileID: 237443479089402406, guid: 9e5564f5580360c43b5c6950beccc4dd, type: 3}
+  - {fileID: 787607143708973628, guid: 7aa0feb303d42934e9e13f7c042ddd2f, type: 3}
+  - {fileID: 7463438255950339495, guid: a8077f7fb69e2d34194fe1a6490385e3, type: 3}
   spawnDelay: 3
 --- !u!4 &888122111
 Transform:
@@ -597,7 +602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888122109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.22, y: 0.77716154, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

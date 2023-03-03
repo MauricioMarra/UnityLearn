@@ -20,10 +20,11 @@ public class MoveObject : MonoBehaviour
     void Update()
     {
         if (!playerController.gameOver)
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector3.left * speed * Time.deltaTime * playerController.GetDashMultiplier());
 
         if (transform.position.x < bounds && this.CompareTag(obstacleTag))
+        {
             Destroy(gameObject);
-
+        }
     }
 }
