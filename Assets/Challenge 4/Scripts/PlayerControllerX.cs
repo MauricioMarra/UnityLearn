@@ -16,11 +16,14 @@ namespace Challenge4
 
         private float normalStrength = 10; // how hard to hit enemy without powerup
         private float powerupStrength = 25; // how hard to hit enemy with powerup
+
+        private ParticleSystem dashParticle;
     
         void Start()
         {
             playerRb = GetComponent<Rigidbody>();
             focalPoint = GameObject.Find("Focal Point");
+            dashParticle = GetComponentInChildren<ParticleSystem>();
         }
 
         void Update()
@@ -32,6 +35,14 @@ namespace Challenge4
             // Set powerup indicator position to beneath player
             powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
 
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime, ForceMode.Impulse);
+                playerRb.AddForce(focalPoint.transform.forward * 2000 * Time.deltaTime, ForceMode.Impulse);
+                Debug.Log("Dash!!");
+                dashParticle.Play();
+            }
         }
 
         // If Player collides with powerup, activate powerup
@@ -42,6 +53,7 @@ namespace Challenge4
                 Destroy(other.gameObject);
                 hasPowerup = true;
                 powerupIndicator.SetActive(true);
+                StartCoroutine(nameof(PowerupCooldown));
             }
         }
 
@@ -59,7 +71,7 @@ namespace Challenge4
             if (other.gameObject.CompareTag("Enemy"))
             {
                 Rigidbody enemyRigidbody = other.gameObject.GetComponent<Rigidbody>();
-                Vector3 awayFromPlayer =  transform.position - other.gameObject.transform.position; 
+                Vector3 awayFromPlayer =  other.gameObject.transform.position - transform.position; 
            
                 if (hasPowerup) // if have powerup hit enemy with powerup force
                 {

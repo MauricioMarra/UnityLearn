@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Challenge4
@@ -13,6 +14,7 @@ namespace Challenge4
         private float spawnRangeX = 10;
         private float spawnZMin = 15; // set min spawn Z
         private float spawnZMax = 25; // set max spawn Z
+        private float currentEnemySpeed = 1f;
 
         public int enemyCount;
         public int waveCount = 1;
@@ -23,13 +25,12 @@ namespace Challenge4
         // Update is called once per frame
         void Update()
         {
-            enemyCount = GameObject.FindGameObjectsWithTag("Powerup").Length;
+            enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
             if (enemyCount == 0)
             {
                 SpawnEnemyWave(waveCount);
             }
-
         }
 
         // Generate random spawn position for powerups and enemy balls
@@ -52,9 +53,11 @@ namespace Challenge4
             }
 
             // Spawn number of enemy balls based on wave number
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < waveCount; i++)
             {
-                Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+                var enemy = Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+                enemy.GetComponent<EnemyX>().speed *= currentEnemySpeed;
+                currentEnemySpeed += .2f;
             }
 
             waveCount++;
