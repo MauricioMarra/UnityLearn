@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class P4SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject spawnPrefab;
+    [SerializeField] private GameObject spawnPrefab;
+    [SerializeField] private GameObject spawnPowerUp;
     [SerializeField]
     private float delay;
+
+    private int waveCount = 0;
 
     private float spawnRange = 9f;
     private Vector3 spawnPosition;
@@ -15,18 +17,29 @@ public class P4SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpawnObject), 0, delay);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        var enemyCount = GameObject.FindObjectsOfType<EnemyControl>().Length;
+
+        if (enemyCount == 0)
+        {
+            waveCount++;
+            SpawnObject(waveCount);
+        }
     }
 
-    void SpawnObject()
+    void SpawnObject(int number = 1)
     {
-        Instantiate(spawnPrefab, GenerateRandomSpawnPosition(), Quaternion.identity);
+        for(int i = 0; i < number; i++)
+        {
+            Instantiate(spawnPrefab, GenerateRandomSpawnPosition(), Quaternion.identity);
+        }
+
+        Instantiate(spawnPowerUp, GenerateRandomSpawnPosition(), Quaternion.identity);
     }
 
     private Vector3 GenerateRandomSpawnPosition()

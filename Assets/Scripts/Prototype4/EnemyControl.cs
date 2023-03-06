@@ -23,5 +23,8 @@ public class EnemyControl : MonoBehaviour
     {
         var target = (player.transform.position - transform.position).normalized;
         enemyRigidBody.AddForce(target * speed);
+
+        if (transform.position.y < -5)
+            Destroy(gameObject);
     }
 }
