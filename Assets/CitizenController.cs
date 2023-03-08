@@ -6,7 +6,8 @@ public class CitizenController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private GameObject player;
-    [SerializeField] private Vector3 knockbackForce;
+    [SerializeField] private Vector3 knockbackDirection;
+    [SerializeField] private float knockbackSpeed;
 
     private Animator citizenAnimator;
 
@@ -15,6 +16,7 @@ public class CitizenController : MonoBehaviour
     {
         citizenAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        speed = Random.Range(5f, 10f);
     }
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class CitizenController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             var rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(knockbackForce * Time.deltaTime);
+            rb.AddForce(knockbackDirection * knockbackSpeed, ForceMode.Impulse);
         }
     }
 }
