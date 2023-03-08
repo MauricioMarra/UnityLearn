@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lab3PlayerController : MonoBehaviour
+public class LabPlayerController : MonoBehaviour
 {
     public float speed;
 
