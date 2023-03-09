@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> targets;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private TextMeshProUGUI gameStartText;
 
     private int score = 0;
 
@@ -20,8 +21,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnObject());
-
         scoreText.text = $"Score: {score}";
     }
 
@@ -57,5 +56,13 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void StartGame(float difficulty)
+    {
+        isGameActive = true;
+        spawnRate /= difficulty;
+        StartCoroutine(SpawnObject());
+        gameStartText.gameObject.SetActive(false);
     }
 }
