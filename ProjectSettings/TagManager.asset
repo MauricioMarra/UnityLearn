@@ -8,6 +8,12 @@ TagManager:
   - Ground
   - PowerUp
   - Enemy
+  - Powerup
+  - Background
+  - Bomb
+  - Money
+  - Bad
+  - Good
   layers:
   - Default
   - TransparentFX
