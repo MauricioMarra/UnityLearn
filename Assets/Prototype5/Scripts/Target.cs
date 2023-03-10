@@ -64,7 +64,17 @@ public class Target : MonoBehaviour
         return Vector3.up * Random.Range(minForceUp, maxForceUp);
     }
 
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    if (gameManager.isGameActive)
+    //    {
+    //        Destroy(gameObject);
+    //        Instantiate(explosion, transform.position, Quaternion.identity);
+    //        gameManager.UpdateScore(pointValue);
+    //    }
+    //}
+
+    public void DestroyObject()
     {
         if (gameManager.isGameActive)
         {

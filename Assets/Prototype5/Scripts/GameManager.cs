@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private TextMeshProUGUI gameStartText;
+    [SerializeField] private AudioSource gameMusic;
 
     private int score = 0;
 
@@ -64,5 +66,10 @@ public class GameManager : MonoBehaviour
         spawnRate /= difficulty;
         StartCoroutine(SpawnObject());
         gameStartText.gameObject.SetActive(false);
+    }
+
+    private void OnMouseDrag()
+    {
+        Debug.Log("Dragging.");
     }
 }

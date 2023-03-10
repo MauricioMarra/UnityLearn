@@ -34,8 +34,7 @@ public class TargetX : MonoBehaviour
             Destroy(gameObject);
             gameManagerX.UpdateScore(pointValue);
             Explode();
-        }
-               
+        }      
     }
 
     // Generate a random spawn position based on a random index from 0 to 3
